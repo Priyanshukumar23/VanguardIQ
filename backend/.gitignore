@@ -1,0 +1,40 @@
+# ===================================================================
+# VANGUARDIQ • BACKEND GITIGNORE (Render Node.js Deployment)
+# ===================================================================
+
+# ⚠️ SECURITY: Protect Google Gemini & OpenAI API Keys
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.key
+*.pem
+
+# Allow .env.example template to be committed
+!.env.example
+
+# Node Dependencies
+node_modules/
+package-lock.json
+
+# Render / TypeScript Build Output
+dist/
+build/
+
+# Logs & Temporary Files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+tmp/
+temp/
+.cache/
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
