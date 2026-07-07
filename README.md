@@ -2,6 +2,10 @@
 ### Autonomous AI Investment Research Terminal & Multi-Agent Consensus Engine
 **InsideIIM × Altuni AI Labs Take-Home Assignment (AI Product Development Engineer Intern)**
 
+<div align="center">
+  <img src="./assets/terminal_dashboard.png" alt="VanguardIQ AI Research Terminal Dashboard" width="95%" />
+</div>
+
 ---
 
 ## 🌟 Overview — What It Does
@@ -79,6 +83,19 @@ Built following modern fintech aesthetics (inspired by Bloomberg Terminal, Linea
 * **Real-Time Roadmap Tracker**: An interactive step-by-step progress bar visualizing state transitions across the LangGraph nodes as they run.
 * **Adversarial Split-Screen Card**: Visualizes Bull and Bear theses side-by-side with distinct emerald and crimson color coding.
 * **One-Click Executive Memo Export**: Analysts can copy the entire CIO report to their clipboard formatted as institutional Markdown, or download it as a `.md` file for investment committees.
+
+### 🖥️ Interface Showcases
+
+#### ⚡ Adversarial Committee Debate & SWOT Analysis
+<div align="center">
+  <img src="./assets/bull_bear_debate.png" alt="Adversarial Bull vs Bear Debate & SWOT Grid" width="95%" />
+</div>
+<br/>
+
+#### 🎯 Executive CIO Actionable Verdict & Institutional Memo
+<div align="center">
+  <img src="./assets/cio_verdict.png" alt="Executive CIO Actionable Verdict" width="95%" />
+</div>
 
 ---
 
