@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from './api';
 import { Search, Sparkles, Terminal, Shield, Cpu, RefreshCw, AlertCircle, ArrowRight, TrendingUp } from 'lucide-react';
 import { AgentProgressTracker } from './components/AgentProgressTracker';
 import { FinancialHeaderCard } from './components/FinancialHeaderCard';
@@ -25,7 +25,7 @@ export const App: React.FC = () => {
 
   // Fetch popular tickers on mount
   useEffect(() => {
-    axios.get('/api/companies/popular')
+    api.get('/api/companies/popular')
       .then(res => setPopularCompanies(res.data))
       .catch(() => {
         // Fallback static list
@@ -44,11 +44,18 @@ export const App: React.FC = () => {
   useEffect(() => {
     if (!jobId) return;
 
+    const BASE =
+      import.meta.env.PROD
+        ? import.meta.env.VITE_API_URL
+        : "";
+
     let eventSource: EventSource | null = null;
     let pollInterval: any = null;
 
     try {
-      eventSource = new EventSource(`/api/research/stream/${jobId}`);
+      eventSource = new EventSource(
+        `${BASE}/api/research/stream/${jobId}`
+      );
 
       eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data);
@@ -65,7 +72,7 @@ export const App: React.FC = () => {
         // Start polling fallback
         pollInterval = setInterval(async () => {
           try {
-            const res = await axios.get(`/api/research/status/${jobId}`);
+            const res = await api.get(`/api/research/status/${jobId}`);
             setReportState(res.data);
             if (res.data.status === 'COMPLETED' || res.data.status === 'FAILED') {
               setLoading(false);
@@ -80,7 +87,7 @@ export const App: React.FC = () => {
       console.warn('SSE initiation failed, using polling.');
       pollInterval = setInterval(async () => {
         try {
-          const res = await axios.get(`/api/research/status/${jobId}`);
+          const res = await api.get(`/api/research/status/${jobId}`);
           setReportState(res.data);
           if (res.data.status === 'COMPLETED' || res.data.status === 'FAILED') {
             setLoading(false);
@@ -109,7 +116,7 @@ export const App: React.FC = () => {
     if (symbolToAnalyze) setSearchInput(symbolToAnalyze);
 
     try {
-      const res = await axios.post('/api/research/analyze', { symbol: symbol.trim() });
+      const res = await api.post('/api/research/analyze', { symbol: symbol.trim() });
       setJobId(res.data.jobId);
     } catch (err: any) {
       setLoading(false);
